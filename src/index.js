@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
-const yargs = require('yargs');
-const path = require('path');
-const fs = require('fs-extra');
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+
+// Get the directory name in a ESM context
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load available stubs from comments (manually added here for demo purposes)
 const availableStubs = [
@@ -38,47 +44,78 @@ const availableStubs = [
 ];
 
 // Define your command and options
-yargs
+yargs(hideBin(process.argv))
   .command(
-    'add [targetPath]',
+    'add',
     'Adds components to your project folder',
     (yargs) => {
-      return yargs
-        .positional('targetPath', {
-          describe:
-            'Path to the location where you would like to add the files to',
-          type: 'string',
-          default: '.',
-        })
-        .option('args', {
-          alias: 'a',
-          type: 'array',
-          description: 'List of specific components to add',
-          choices: availableStubs,
-        });
+      return yargs.option('args', {
+        alias: 'a',
+        type: 'array',
+        description: 'List of specific components to add',
+        choices: availableStubs,
+      });
     },
     (argv) => {
-      const { targetPath, args } = argv;
-      runCommand(targetPath, args);
+      const { args } = argv;
+      runCommand(args);
     }
   )
   .help().argv;
 
-// The function to run your command
-function runCommand(targetPath, args) {
-  console.log('Running command with params:', targetPath, args);
+function runCommand(args) {
+  console.log('Running command with params:', args);
 
-  const stubDirectory = path.join(__dirname, '..', 'stubs');
+  const stubDirectory = path.join(__dirname, 'stubs');
 
   // Determine which stubs to copy
   const stubsToCopy = args && args.length > 0 ? args : availableStubs;
 
   stubsToCopy.forEach((stub) => {
-    const source = path.join(stubDirectory, `${stub}.js`);
-    const destination = path.join(process.cwd(), targetPath, `${stub}.tsx`);
+    const source = path.join(stubDirectory, `${stub}.tsx`);
+    const destination = path.join(
+      process.cwd(),
+      'UI/components/primitives',
+      `${stub}.tsx`
+    );
 
     fs.copy(source, destination)
       .then(() => console.log(`Copied ${stub} to ${destination}`))
       .catch((err) => console.error(`Error copying ${stub}:`, err));
   });
+
+  fs.copy(
+    path.join(stubDirectory, `index.ts`),
+    path.join(process.cwd(), 'UI/components', `index.ts`)
+  )
+    .then(() => console.log(`Copied index to destination`))
+    .catch((err) => console.error(`Error copying index`, err));
+
+  fs.copy(
+    path.join(stubDirectory, `default.tsx`),
+    path.join(process.cwd(), 'UI/layouts', `default.tsx`)
+  )
+    .then(() => console.log(`Copied layout to destination`))
+    .catch((err) => console.error(`Error copying layout`, err));
+
+  fs.copy(
+    path.join(stubDirectory, `types.ts`),
+    path.join(process.cwd(), 'UI/lib', `types.ts`)
+  )
+    .then(() => console.log(`Copied types to destination`))
+    .catch((err) => console.error(`Error copying types`, err));
+
+  fs.copy(
+    path.join(stubDirectory, `utils.ts`),
+    path.join(process.cwd(), 'UI/lib', `utils.ts`)
+  )
+    .then(() => console.log(`Copied utils to destination`))
+    .catch((err) => console.error(`Error copying utils`, err));
+
+  fs.copy(
+    path.join(stubDirectory, `home.tsx`),
+    path.join(process.cwd(), 'UI/pages', `home.tsx`)
+  )
+    .then(() => console.log(`Copied home to destination`))
+    .catch((err) => console.error(`Error copying home`, err));
 }

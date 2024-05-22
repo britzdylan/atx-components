@@ -3,13 +3,24 @@
   "version": "1.0.0",
   "description": "Alpinejs, Tailiwind & JSX Primitive components",
   "main": "index.js",
+  "scripts": {
+    "relink": "chmod +x src/index.js && npm unlink -g atx-components && npm link",
+    "test": "node bin/test.js"
+  },
   "bin": {
     "atx-components": "src/index.js"
   },
   "author": "Dylan Britz",
   "license": "ISC",
   "dependencies": {
+    "execa": "^9.1.0",
     "fs-extra": "^11.2.0",
     "yargs": "^17.7.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@japa/assert": "^2.0.0-2",
+    "@japa/file-system": "^2.0.0-2",
+    "@japa/runner": "^3.0.0-9"
   }
 }
