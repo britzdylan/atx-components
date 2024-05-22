@@ -1,0 +1,15 @@
+{
+  "name": "atx-components",
+  "version": "1.0.0",
+  "description": "Alpinejs, Tailiwind & JSX Primitive components",
+  "main": "index.js",
+  "bin": {
+    "atx-components": "src/index.js"
+  },
+  "author": "Dylan Britz",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "yargs": "^17.7.2"
+  }
+}
