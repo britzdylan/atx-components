@@ -1,7 +1,7 @@
 {
   "name": "atx-components",
   "version": "1.0.0",
-  "description": "Alpinejs, Tailiwind & JSX Primitive components",
+  "description": "Alpinejs, Tailiwind & JSX Primitive components for AdonisJs",
   "main": "index.js",
   "scripts": {
     "relink": "chmod +x src/index.js && npm unlink -g atx-components && npm link",
@@ -10,8 +10,16 @@
   "bin": {
     "atx-components": "src/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/britzdylan/atx-components"
+  },
   "author": "Dylan Britz",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/britzdylan/atx-components/issues"
+  },
+  "homepage": "https://github.com/britzdylan/atx-components#readme",
   "dependencies": {
     "execa": "^9.1.0",
     "fs-extra": "^11.2.0",
