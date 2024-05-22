@@ -75,7 +75,7 @@ function runCommand(targetPath, args) {
 
   stubsToCopy.forEach((stub) => {
     const source = path.join(stubDirectory, `${stub}.js`);
-    const destination = path.join(process.cwd(), targetPath, `${stub}.js`);
+    const destination = path.join(process.cwd(), targetPath, `${stub}.tsx`);
 
     fs.copy(source, destination)
       .then(() => console.log(`Copied ${stub} to ${destination}`))
