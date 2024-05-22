@@ -1,13 +1,25 @@
-# My-CLI-Tool
+# atx-components
 
-![Version](https://img.shields.io/npm/v/my-cli-tool.svg)
-![Downloads](https://img.shields.io/npm/dt/my-cli-tool.svg)
+![Version](https://img.shields.io/npm/v/atx-components.svg)
+![Downloads](https://img.shields.io/npm/dt/atx-components.svg)
 
-`My-CLI-Tool` is a convenient command-line tool that copies pre-built UI component files (stubs) to your project directory. This tool helps you quickly set up and integrate standard UI components into your project.
+atx-components is a powerful and efficient command-line tool designed specifically for AdonisJs. It allows developers to effortlessly copy pre-built UI component files (stubs) into their project directories. This tool is instrumental in rapidly setting up and integrating standard UI components into your AdonisJs applications.
+
+The components are based on JSX and require the following packages to be pre-installed and fully configured in your project:
+
+- "@adonisjs/vite": "^2.0.2"
+- "@alpinejs/anchor": "^3.13.8"
+- "@alpinejs/collapse": "^3.13.8"
+- "@alpinejs/focus": "^3.13.8"
+- "adonisjsx": "^0.2.0"
+- "alpinejs": "^3.13.7"
+- "class-variance-authority": "^0.7.0"
+- "clsx": "^2.1.0"
+- "tailwind-merge": "^2.2.2"
 
 ## Installation
 
-You can globally install `My-CLI-Tool` or use it directly with `npx`.
+You can globally install `atx-components` or use it directly with `npx`.
 
 ### Global Installation
 
@@ -36,7 +48,7 @@ atx-components add
 `--args, -a` (optional): Specify a list of components you want to add. If omitted, all available components will be added.
 
 ```bash
-my-cli-tool add --args button card dropdown
+atx-components add --args button card dropdown
 ```
 
 List of Available Components
